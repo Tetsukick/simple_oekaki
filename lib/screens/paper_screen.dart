@@ -18,13 +18,13 @@ class PaperScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             height: (media.size.height - media.padding.top) / 2,
-            child: Paper(),
+            child: Paper(true),
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.black),),
             ),
           ),
           Expanded(
-            child: Paper(),
+            child: Paper(false),
           )
         ],
       ),

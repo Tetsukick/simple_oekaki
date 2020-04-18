@@ -12,7 +12,7 @@ class StrokesModel extends ChangeNotifier {
   void add(PenModel pen, Offset offset, Size screenSize) {
     this.screenSize = screenSize / 2;
     if (offset.dy < this.screenSize.height) {
-      _strokes.add(Stroke(pen.color)..add(offset));
+      _strokes.add(Stroke(pen.color)..add(Offset(this.screenSize.width * 2 - offset.dx, this.screenSize.height - offset.dy)));
     } else {
       _strokes.add(Stroke(pen.color)..add(Offset(offset.dx, offset.dy - this.screenSize.height)));
     }
@@ -21,7 +21,7 @@ class StrokesModel extends ChangeNotifier {
 
   void update(Offset offset) {
     if (offset.dy < this.screenSize.height) {
-      _strokes.last.add(offset);
+      _strokes.last.add(Offset(this.screenSize.width * 2 - offset.dx, this.screenSize.height - offset.dy));
     } else {
     _strokes.last.add(Offset(offset.dx, offset.dy - this.screenSize.height));
     }

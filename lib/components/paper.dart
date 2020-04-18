@@ -5,14 +5,20 @@ import 'package:provider/provider.dart';
 import 'package:simple_oekaki/models/pen_model.dart';
 import 'package:simple_oekaki/models/strokes_model.dart';
 
+import 'dart:math' as math;
+
 class Paper extends StatelessWidget {
+  final bool isUppeerView;
+
+  Paper(this.isUppeerView);
+
   @override
   Widget build(BuildContext context) {
     final pen = Provider.of<PenModel>(context);
     final strokes = Provider.of<StrokesModel>(context);
     final Size size = MediaQuery.of(context).size;
 
-    return Listener(
+    return Transform.rotate(angle: this.isUppeerView ? - math.pi : 0, child: Listener(
       onPointerDown: (details) {
         print('onPointerDown');
         print(details);
@@ -34,7 +40,8 @@ class Paper extends StatelessWidget {
           constraints: BoxConstraints.expand(),
         ),
       ),
-    );
+    ),);
+
   }
 }
 
