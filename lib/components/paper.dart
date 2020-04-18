@@ -19,27 +19,31 @@ class Paper extends StatelessWidget {
     final strokes = Provider.of<StrokesModel>(context);
     final Size size = MediaQuery.of(context).size;
 
-    return Transform.rotate(angle: this.isUppeerView ? - math.pi : 0, child: Listener(
-      onPointerDown: (details) {
-        print('onPointerDown');
-        print(details);
-        strokes.add(pen, details.position, size);
-      },
-      onPointerMove: (details) {
-        print('onPointerMove');
-        print(details);
-        strokes.update(details.position);
-      },
-      onPointerUp: (details) {
-        print('onPoiterUp');
-        print(details);
-        strokes.update(details.position);
-      },
+    return Transform.rotate(angle: this.isUppeerView ? - math.pi : 0,
       child: Scaffold(
-        body: CustomPaint(
-          painter: _Painter(strokes),
-          child: ConstrainedBox(
-            constraints: BoxConstraints.expand(),
+        body: SingleChildScrollView(
+          child: Listener(
+            onPointerDown: (details) {
+              print('onPointerDown');
+              print(details);
+              strokes.add(pen, details.localPosition, size);
+            },
+            onPointerMove: (details) {
+              print('onPointerMove');
+              print(details);
+              strokes.update(details.localPosition);
+            },
+            onPointerUp: (details) {
+              print('onPoiterUp');
+              print(details);
+              strokes.update(details.localPosition);
+            },
+            child: CustomPaint(
+              painter: _Painter(strokes),
+              child: ConstrainedBox(
+                constraints: BoxConstraints.expand(),
+              ),
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -49,7 +53,7 @@ class Paper extends StatelessWidget {
           },
         ),
       ),
-    ),);
+    );
 
   }
 }
