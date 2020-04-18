@@ -28,12 +28,6 @@ class PaperScreen extends StatelessWidget {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          strokes.clear();
-        },
-      ),
     );
   }
 }

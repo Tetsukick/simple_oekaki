@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_oekaki/models/pen_model.dart';
@@ -34,10 +35,18 @@ class Paper extends StatelessWidget {
         print(details);
         strokes.update(details.position);
       },
-      child: CustomPaint(
-        painter: _Painter(strokes),
-        child: ConstrainedBox(
-          constraints: BoxConstraints.expand(),
+      child: Scaffold(
+        body: CustomPaint(
+          painter: _Painter(strokes),
+          child: ConstrainedBox(
+            constraints: BoxConstraints.expand(),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.delete),
+          onPressed: () {
+            strokes.clear();
+          },
         ),
       ),
     ),);
