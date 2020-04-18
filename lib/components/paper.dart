@@ -13,12 +13,18 @@ class Paper extends StatelessWidget {
 
     return Listener(
       onPointerDown: (details) {
+        print('onPointerDown');
+        print(details);
         strokes.add(pen, details.position);
       },
       onPointerMove: (details) {
+        print('onPointerMove');
+        print(details);
         strokes.update(details.position);
       },
       onPointerUp: (details) {
+        print('onPoiterUp');
+        print(details);
         strokes.update(details.position);
       },
       child: CustomPaint(

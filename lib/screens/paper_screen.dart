@@ -11,14 +11,17 @@ class PaperScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strokes = Provider.of<StrokesModel>(context);
-    final Size size = MediaQuery.of(context).size;
+    final MediaQueryData media = MediaQuery.of(context);
 
     return Scaffold(
       body: Column(
         children: <Widget>[
           Container(
-            height: size.height / 2,
+            height: (media.size.height - media.padding.top) / 2,
             child: Paper(),
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.black),),
+            ),
           ),
           Expanded(
             child: Paper(),
