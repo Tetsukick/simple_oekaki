@@ -10,12 +10,13 @@ class Paper extends StatelessWidget {
   Widget build(BuildContext context) {
     final pen = Provider.of<PenModel>(context);
     final strokes = Provider.of<StrokesModel>(context);
+    final Size size = MediaQuery.of(context).size;
 
     return Listener(
       onPointerDown: (details) {
         print('onPointerDown');
         print(details);
-        strokes.add(pen, details.position);
+        strokes.add(pen, details.position, size);
       },
       onPointerMove: (details) {
         print('onPointerMove');
